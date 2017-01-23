@@ -1,0 +1,3 @@
+Link para conectar a la base:
+
+mongodb://<israel1x>:<dawtarea>@ds127389.mlab.com:27389/proyectosdaw.
