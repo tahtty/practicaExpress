@@ -10,6 +10,9 @@
 			text-decoration: underline;
 			text-align: center;
 		}
+    p{
+      display: inline;
+    }
 	</style>
 </head>
 <div class="container">
@@ -24,7 +27,7 @@
 			--></select><br>
 	</h2></header></div>
 	<div>
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"> Agregar tarea</span></button></div>
+	<button type="button" class="btn btn-primary btn-lg" id="at" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"> Agregar tarea</span></button></div>
 	<div><br><br></div>
 	<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,32 +39,30 @@
       </div>
       <div class="modal-body">
         <div>
-        	<form>
+        	<form id="titulo">
         		Título: <input type="text" name="titulo">
         	</form>
         </div>
         <div>
-        	<form>
+        	<form id="descripcion">
         		Descripción: <textarea rows="4" cols="50"></textarea>
         	</form>
         </div>
         <div>
-        	<form>
+        	<form id="responsable">
         		Responsable: <input type="text" name="resp">
         		<button class=" btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="false"></span></button>
         	</form>
         </div>
         <div>
         	<form id="estado">
-        		Estado: <!--
-        		dinamicamente
-        		-->
+        		Estado: <span>Inicial</span>
         	</form>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success">Crear</button>
+        <button type="button" class="btn btn-success" id="crear">Crear</button>
       </div>
     </div>
   </div>
@@ -118,6 +119,16 @@
 		iniciales();
 		enDesarrollo();
 		finalizado();
+    $("#crear").click(function(event) {
+    /* Act on the event */
+    var tit=$("#titulo").val();
+    var desc=$("#descripcion").val();
+    var respo=$("#responsable").val();
+    /*enviar a la base*/
+    console.log(tit);
+    console.log(desc);
+    console.log(respo);
+  });
 	});
 	function agregarProyecto(){
 		var op=document.createElement("option");
@@ -126,8 +137,18 @@
 	}
 	function iniciales(){
 		var pi=document.createElement("p");
+    var sp=document.createElement("span");
+    var ep=document.createElement("span");
+    var bte=document.createElement("button");
+    var btd=document.createElement("button");
+    $(sp).addClass("glyphicon glyphicon-remove");
+    $(ep).addClass("glyphicon glyphicon-pencil");
 		$(pi).html("Tarea 1");
-		$("#tini").append(pi);
+    $(bte).append(ep);
+    $(btd).append(sp);
+    $("#tini").append(pi);
+    $("#tini").append(bte);
+    $("#tini").append(btd);
 	}
 	function enDesarrollo(){
 		var pd=document.createElement("p");
