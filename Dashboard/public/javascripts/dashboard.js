@@ -25,10 +25,19 @@ $(document).ready(function(){
     $(".modal-backdrop").remove();
   }
   });
+    $(".eliminar").click(function(event){
+      console.log(jQuery(this).parents("div")[0]);
+      console.log(($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue);
+      var id=($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue;
+      $("#idd").html(id);
+    });
     $("#si").click(function(event) {
-      console.log($(".eliminar").parents("div.draggable").last());
-      console.log(($($(".eliminar").parents("div.draggable").last())[0]));
-      $($($(".eliminar").parents("div.draggable").last())[0]).remove();
+      console.log($("#idd"));
+      var id=$("#idd").html();
+      console.log(id);
+      /*$.getJSON(url,{tipo: tareas,"id": id,format:"json"} ,function(resp) { url para eliminar de la base
+        usar id que agarra el id de la tarea
+      }*/
       $("body").removeClass('modal-open');
     $("#elimModal").removeClass('in');
     $("#elimModal").css('display', 'none');
@@ -48,13 +57,13 @@ $(document).ready(function(){
       var div = document.createElement("div");
       var pi=document.createElement("p");
       var id=document.createElement("span");
-      $(id).html("1");//id de la tarea en la base
+      $(id).html("5");//id de la tarea en la base
       var sp=document.createElement("span");
       var btd=document.createElement("button");
       $(id).css('visibility', 'hidden');
       $(div).addClass('draggable');
       $(btd).addClass("btn btn-default");
-      $(btd).addClass('eliminar');
+      $(btd).addClass("eliminar");
       $(btd).attr('data-toggle', 'modal');
       $(btd).attr('data-target', '#elimModal');
       $(sp).addClass("glyphicon glyphicon-remove");
@@ -79,6 +88,8 @@ $(document).ready(function(){
       $(div).addClass('draggable');
       $(btd).addClass("btn btn-default");
       $(btd).addClass('eliminar');
+      $(btd).attr('data-toggle', 'modal');
+      $(btd).attr('data-target', '#elimModal');
       $(sp).addClass("glyphicon glyphicon-remove");
       $(pi).html("Tarea 2 ");//resp[i].titulo
        $(btd).append(sp);
@@ -95,17 +106,10 @@ $(document).ready(function(){
       var pi=document.createElement("p");
       var id=document.createElement("span");
       $(id).html("3");//id de la tarea
-      var sp=document.createElement("span");
-      var btd=document.createElement("button");
       $(id).css('visibility', 'hidden');
       $(div).addClass('draggable');
-      $(btd).addClass("btn btn-default");
-      $(btd).addClass('eliminar');
-      $(sp).addClass("glyphicon glyphicon-remove");
       $(pi).html("Tarea 3 ");//resp[i].titulo
-       $(btd).append(sp);
       $(div).append(pi);
-      $(div).append(btd);
       $(div).append(id);
       $("#tfin").append(div);
     }
