@@ -5,13 +5,25 @@ $(document).ready(function(){
 		finalizado();
     $("#crear").click(function(event) {
     /* Act on the event */
-    var tit=$("#titulo").val();
-    var desc=$("#descripcion").val();
-    var respo=$("#responsable").val();
+    var tit=$("#titulo input").val();
+    var desc=$("#descripcion textarea").val();
+    var respo=$("#responsable input").val();
+    if (tit==""||desc==""||respo=="") {
+      var spa=document.createElement("span");
+      $(spa).html("Debe llenar todos los campos");
+      $(spa).css('color', 'red');
+      $("#myModal .modal-dialog .modal-content .modal-body").append(spa);
+    }
+    else{
     /*enviar a la base*/
     console.log(tit);
     console.log(desc);
     console.log(respo);
+    $("body").removeClass('modal-open');
+    $("#myModal").removeClass('in');
+    $("#myModal").css('display', 'none');
+    $(".modal-backdrop").remove();
+  }
   });
     $(".eliminar").click(function(event) {
       console.log(jQuery(this).parents("div")[0]);
