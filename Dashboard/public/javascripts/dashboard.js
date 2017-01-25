@@ -25,10 +25,14 @@ $(document).ready(function(){
     $(".modal-backdrop").remove();
   }
   });
-    $(".eliminar").click(function(event) {
-      console.log(jQuery(this).parents("div")[0]);
-      console.log(($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue);
-      $(jQuery(this).parents("div")[0]).remove();
+    $("#si").click(function(event) {
+      console.log($(".eliminar").parents("div.draggable").last());
+      console.log(($($(".eliminar").parents("div.draggable").last())[0]));
+      $($($(".eliminar").parents("div.draggable").last())[0]).remove();
+      $("body").removeClass('modal-open');
+    $("#elimModal").removeClass('in');
+    $("#elimModal").css('display', 'none');
+    $(".modal-backdrop").remove();
     });
 	});
 	function agregarProyecto(){
@@ -51,6 +55,8 @@ $(document).ready(function(){
       $(div).addClass('draggable');
       $(btd).addClass("btn btn-default");
       $(btd).addClass('eliminar');
+      $(btd).attr('data-toggle', 'modal');
+      $(btd).attr('data-target', '#elimModal');
       $(sp).addClass("glyphicon glyphicon-remove");
       $(pi).html("Tarea 1 ");//resp[i].titulo
       $(btd).append(sp);
