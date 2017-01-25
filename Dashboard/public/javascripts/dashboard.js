@@ -13,6 +13,11 @@ $(document).ready(function(){
     console.log(desc);
     console.log(respo);
   });
+    $(".eliminar").click(function(event) {
+      console.log(jQuery(this).parents("div")[0]);
+      console.log(($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue);
+      $(jQuery(this).parents("div")[0]).remove();
+    });
 	});
 	function agregarProyecto(){
 		var op=document.createElement("option");
@@ -22,34 +27,68 @@ $(document).ready(function(){
 	function iniciales(){
     var url = "#";//creo que se llamará a la función del modelo que tenga el query que saque de la base(?)
 
-//$.getJSON(url,{tags: hashtag ,format:"json"} ,function(resp) {
+//$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
   for (var i =0 ; i<1 /*resp.length*/; i++) {
       var div = document.createElement("div");
-      div.classList.add('draggable')
-      div.classList.add('drag-drop')
       var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("1");//id de la tarea en la base
       var sp=document.createElement("span");
-      var ep=document.createElement("span");
-      var bte=document.createElement("button");
       var btd=document.createElement("button");
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(btd).addClass("btn btn-default");
+      $(btd).addClass('eliminar');
       $(sp).addClass("glyphicon glyphicon-remove");
-      $(ep).addClass("glyphicon glyphicon-pencil");
-      $(pi).html("Tarea 1");//resp[i]
-      $(bte).append(ep);
+      $(pi).html("Tarea 1 ");//resp[i].titulo
       $(btd).append(sp);
       $(div).append(pi);
-      $(div).append(bte);
       $(div).append(btd);
+      $(div).append(id);
       $("#tini").append(div);
     }
 }//);}
 	function enDesarrollo(){
-		var pd=document.createElement("p");
-		$(pd).html("Tarea 2");
-		$("#tdes").append(pd);
-	}
+  //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
+  for (var i =0 ; i<1 /*resp.length*/; i++) {
+		 var div = document.createElement("div");
+      var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("2");//id de la tarea
+      var sp=document.createElement("span");
+      var btd=document.createElement("button")
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(btd).addClass("btn btn-default");
+      $(btd).addClass('eliminar');
+      $(sp).addClass("glyphicon glyphicon-remove");
+      $(pi).html("Tarea 2 ");//resp[i].titulo
+       $(btd).append(sp);
+      $(div).append(pi);
+      $(div).append(btd);
+      $(div).append(id);
+      $("#tdes").append(div);
+    }
+	}//);}
 	function finalizado(){
-		var pf=document.createElement("p");
-		$(pf).html("Tarea 3");
-		$("#tfin").append(pf);
-	}
+    //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
+  for (var i =0 ; i<1 /*resp.length*/; i++) {
+		var div = document.createElement("div");
+      var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("3");//id de la tarea
+      var sp=document.createElement("span");
+      var btd=document.createElement("button");
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(btd).addClass("btn btn-default");
+      $(btd).addClass('eliminar');
+      $(sp).addClass("glyphicon glyphicon-remove");
+      $(pi).html("Tarea 3 ");//resp[i].titulo
+       $(btd).append(sp);
+      $(div).append(pi);
+      $(div).append(btd);
+      $(div).append(id);
+      $("#tfin").append(div);
+    }
+	}//);}
