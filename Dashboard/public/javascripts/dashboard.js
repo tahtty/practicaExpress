@@ -24,6 +24,9 @@ $(document).ready(function(){
 
 //$.getJSON(url,{tags: hashtag ,format:"json"} ,function(resp) {
   for (var i =0 ; i<1 /*resp.length*/; i++) {
+      var div = document.createElement("div");
+      div.classList.add('draggable')
+      div.classList.add('drag-drop')
       var pi=document.createElement("p");
       var sp=document.createElement("span");
       var ep=document.createElement("span");
@@ -34,9 +37,10 @@ $(document).ready(function(){
       $(pi).html("Tarea 1");//resp[i]
       $(bte).append(ep);
       $(btd).append(sp);
-      $("#tini").append(pi);
-      $("#tini").append(bte);
-      $("#tini").append(btd);
+      $(div).append(pi);
+      $(div).append(bte);
+      $(div).append(btd);
+      $("#tini").append(div);
     }
 }//);}
 	function enDesarrollo(){
