@@ -36,8 +36,10 @@ $(document).ready(function(){
       var id=$("#idd").html();
       console.log(id);
       /*$.getJSON(url,{tipo: tareas,"id": id,format:"json"} ,function(resp) { url para eliminar de la base
-        usar id que agarra el id de la tarea
-      }*/
+        usar id que agarra el id de la tarea*/
+        iniciales();
+        enDesarrollo();
+      //}
       $("body").removeClass('modal-open');
     $("#elimModal").removeClass('in');
     $("#elimModal").css('display', 'none');
@@ -50,6 +52,8 @@ $(document).ready(function(){
 		$("#combo").append(op);
 	}
 	function iniciales(){
+    $("#tini").empty();
+    console.log('gotta gotta work.work,work,work... Gotta work!');
     var url = "#";//creo que se llamará a la función del modelo que tenga el query que saque de la base(?)
 
 //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
@@ -76,6 +80,8 @@ $(document).ready(function(){
     }
 }//);}
 	function enDesarrollo(){
+    $("#tdes").empty();
+    console.log('gotta gotta work.work,work,work... Gotta work!');
   //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
   for (var i =0 ; i<1 /*resp.length*/; i++) {
 		 var div = document.createElement("div");
