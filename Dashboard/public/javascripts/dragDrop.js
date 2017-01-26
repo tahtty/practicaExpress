@@ -33,7 +33,7 @@ interact('.draggable')
     // translate the element
     target.style.webkitTransform =
     target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+      'translate3d(' + x + 'px, ' + y + 'px,1000px)';
 
     // update the posiion attributes
     target.setAttribute('data-x', x);
@@ -45,7 +45,7 @@ interact('.draggable')
 
 //interact('.draggable').draggable(true);
 
-interact("#dropzone-des, #dropzone-fin").dropzone({
+interact(".panel").dropzone({
   // only accept elements matching this CSS selector
   accept: '.draggable',
   // Require a 75% element overlap for a drop to be possible
@@ -73,6 +73,8 @@ interact("#dropzone-des, #dropzone-fin").dropzone({
   ondrop: function (event) {
     event.relatedTarget.textContent = 'Dropped';
     console.log(event.target)
+    console.log($(event.target).html())
+    console.log($(event.relatedTarget).html())
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
