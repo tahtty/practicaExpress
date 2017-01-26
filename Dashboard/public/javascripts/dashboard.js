@@ -5,14 +5,46 @@ $(document).ready(function(){
 		finalizado();
     $("#crear").click(function(event) {
     /* Act on the event */
-    var tit=$("#titulo").val();
-    var desc=$("#descripcion").val();
-    var respo=$("#responsable").val();
+    var tit=$("#titulo input").val();
+    var desc=$("#descripcion textarea").val();
+    var respo=$("#responsable input").val();
+    if (tit==""||desc==""||respo=="") {
+      var spa=document.createElement("span");
+      $(spa).html("Debe llenar todos los campos");
+      $(spa).css('color', 'red');
+      $("#myModal .modal-dialog .modal-content .modal-body").append(spa);
+    }
+    else{
     /*enviar a la base*/
     console.log(tit);
     console.log(desc);
     console.log(respo);
+    $("body").removeClass('modal-open');
+    $("#myModal").removeClass('in');
+    $("#myModal").css('display', 'none');
+    $(".modal-backdrop").remove();
+  }
   });
+    $(".eliminar").click(function(event){
+      console.log(jQuery(this).parents("div")[0]);
+      console.log(($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue);
+      var id=($(jQuery(this).parents("div")[0]).children('span'))[0].childNodes[0].nodeValue;
+      $("#idd").html(id);
+    });
+    $("#si").click(function(event) {
+      console.log($("#idd"));
+      var id=$("#idd").html();
+      console.log(id);
+      /*$.getJSON(url,{tipo: tareas,"id": id,format:"json"} ,function(resp) { url para eliminar de la base
+        usar id que agarra el id de la tarea*/
+        iniciales();
+        enDesarrollo();
+      //}
+      $("body").removeClass('modal-open');
+    $("#elimModal").removeClass('in');
+    $("#elimModal").css('display', 'none');
+    $(".modal-backdrop").remove();
+    });
 	});
 	function agregarProyecto(){
 		var op=document.createElement("option");
@@ -20,36 +52,71 @@ $(document).ready(function(){
 		$("#combo").append(op);
 	}
 	function iniciales(){
+    $("#tini").empty();
+    console.log('gotta gotta work.work,work,work... Gotta work!');
     var url = "#";//creo que se llamará a la función del modelo que tenga el query que saque de la base(?)
 
-//$.getJSON(url,{tags: hashtag ,format:"json"} ,function(resp) {
+//$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
   for (var i =0 ; i<1 /*resp.length*/; i++) {
       var div = document.createElement("div");
-      div.classList.add('draggable')
-      div.classList.add('drag-drop')
       var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("5");//id de la tarea en la base
       var sp=document.createElement("span");
-      var ep=document.createElement("span");
-      var bte=document.createElement("button");
       var btd=document.createElement("button");
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(btd).addClass("btn btn-default");
+      $(btd).addClass("eliminar");
+      $(btd).attr('data-toggle', 'modal');
+      $(btd).attr('data-target', '#elimModal');
       $(sp).addClass("glyphicon glyphicon-remove");
-      $(ep).addClass("glyphicon glyphicon-pencil");
-      $(pi).html("Tarea 1");//resp[i]
-      $(bte).append(ep);
+      $(pi).html("Tarea 1 ");//resp[i].titulo
       $(btd).append(sp);
       $(div).append(pi);
-      $(div).append(bte);
       $(div).append(btd);
+      $(div).append(id);
       $("#tini").append(div);
     }
 }//);}
 	function enDesarrollo(){
-		var pd=document.createElement("p");
-		$(pd).html("Tarea 2");
-		$("#tdes").append(pd);
-	}
+    $("#tdes").empty();
+    console.log('gotta gotta work.work,work,work... Gotta work!');
+  //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
+  for (var i =0 ; i<1 /*resp.length*/; i++) {
+		 var div = document.createElement("div");
+      var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("2");//id de la tarea
+      var sp=document.createElement("span");
+      var btd=document.createElement("button")
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(btd).addClass("btn btn-default");
+      $(btd).addClass('eliminar');
+      $(btd).attr('data-toggle', 'modal');
+      $(btd).attr('data-target', '#elimModal');
+      $(sp).addClass("glyphicon glyphicon-remove");
+      $(pi).html("Tarea 2 ");//resp[i].titulo
+       $(btd).append(sp);
+      $(div).append(pi);
+      $(div).append(btd);
+      $(div).append(id);
+      $("#tdes").append(div);
+    }
+	}//);}
 	function finalizado(){
-		var pf=document.createElement("p");
-		$(pf).html("Tarea 3");
-		$("#tfin").append(pf);
-	}
+    //$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
+  for (var i =0 ; i<1 /*resp.length*/; i++) {
+		var div = document.createElement("div");
+      var pi=document.createElement("p");
+      var id=document.createElement("span");
+      $(id).html("3");//id de la tarea
+      $(id).css('visibility', 'hidden');
+      $(div).addClass('draggable');
+      $(pi).html("Tarea 3 ");//resp[i].titulo
+      $(div).append(pi);
+      $(div).append(id);
+      $("#tfin").append(div);
+    }
+	}//);}
