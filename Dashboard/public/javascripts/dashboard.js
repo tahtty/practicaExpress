@@ -67,11 +67,11 @@ $(document).ready(function(){
 	function iniciales(){
     $("#tini").empty();
     console.log('gotta gotta work.work,work,work... Gotta work!');
-    var url = "#";//creo que se llamará a la función del modelo que tenga el query que saque de la base(?)
+    var url = "/projects";//creo que se llamará a la función del modelo que tenga el query que saque de la base(?)
 
 //en el json sacar del proyecto 1
-//$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
-  for (var i =0 ; i<1 /*resp.length*/; i++) {
+$.getJSON(url,{tipo: tareas ,format:"json"} ,function(resp) {
+  for (var i =0 ; i<resp.length; i++) {
       var div = document.createElement("div");
       var pi=document.createElement("p");
       var id=document.createElement("span");
@@ -92,7 +92,8 @@ $(document).ready(function(){
       $(div).append(id);
       $("#tini").append(div);
     }
-}//);}
+} );}
+
 function inicialesc(c){
   $("#tini").empty();
   //$.getJSON(url,{tipo: tareas,proyecto: c ,format:"json"} ,function(resp) {//Este saca del proyecto especificado(se ha pasado el contenido html de la opción a la que se cambió)

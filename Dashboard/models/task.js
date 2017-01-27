@@ -20,6 +20,10 @@ var TaskSchema   = new Schema({
                     type:     Date,
                     required: false,
                     default:  Date.now
+                  },
+    proyecto :    { 
+                    type: Schema.Types.ObjectId,
+                    ref: 'Project'
                   }
 });
 

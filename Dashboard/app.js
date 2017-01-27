@@ -18,7 +18,7 @@ var users = require('./routes/users');
 var projects = require('./routes/projects');
 var tasks = require('./routes/tasks');
 
-var db = server();
+///var db = server();
 
 var app = express();
 
