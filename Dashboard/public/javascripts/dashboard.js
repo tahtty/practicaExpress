@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    $("#combo").change(function(event) {
+      var cambio=$(this).val();
+      iniciales(cambio);
+      enDesarrollo(cambio);
+      finalizado(cambio);
+    });
 		agregarProyecto();
 		iniciales();
 		enDesarrollo();
@@ -47,9 +53,13 @@ $(document).ready(function(){
     });
 	});
 	function agregarProyecto(){
+    /*$.getJSON(url,{tipo: proyectos,id: 1,format:"json"} ,function(resp) {} id del primer proyecto que es el default*/
 		var op=document.createElement("option");
+    var op2=document.createElement("option");
 		$(op).html("Proyecto 1");
+    $(op2).html("Proyecto 2");
 		$("#combo").append(op);
+    $("#combo").append(op2);
 	}
 	function iniciales(){
     $("#tini").empty();
