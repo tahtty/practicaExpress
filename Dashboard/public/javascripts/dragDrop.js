@@ -4,7 +4,7 @@ interact('.draggable')
     inertia: true,
     // keep the element within the area of it's parent
     restrict: {
-      restriction: "parent",
+      restriction: "none",
       endOnly: true,
       elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
     },
@@ -17,10 +17,10 @@ interact('.draggable')
     onend: function (event) {
       var textEl = event.target.querySelector('p');
 
-      textEl && (textEl.textContent =
+      /*textEl && (textEl.textContent =
         'moved a distance of '
         + (Math.sqrt(event.dx * event.dx +
-                     event.dy * event.dy)|0) + 'px');
+                     event.dy * event.dy)|0) + 'px');*/
     }
   });
 
@@ -45,7 +45,7 @@ interact('.draggable')
 
 //interact('.draggable').draggable(true);
 
-interact(".panel").dropzone({
+interact("#desdrop,#inidrop,#findrop").dropzone({
   // only accept elements matching this CSS selector
   accept: '.draggable',
   // Require a 75% element overlap for a drop to be possible
@@ -59,7 +59,7 @@ interact(".panel").dropzone({
   ondragenter: function (event) {
     var draggableElement = event.relatedTarget,
         dropzoneElement = event.target;
-    $(dropzoneElement).css("backgroundColor","black");
+    $(dropzoneElement).css("backgroundColor","grey");
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target');
     draggableElement.classList.add('can-drop');
@@ -71,15 +71,32 @@ interact(".panel").dropzone({
     $(event.target).css("backgroundColor","white");
   },
   ondrop: function (event) {
-    event.relatedTarget.textContent = 'Dropped';
+    //event.relatedTarget.textContent = 'Dropped';
+    dropzoneElement = event.target;
+    $(dropzoneElement).css("backgroundColor","<white></white>");
+
     console.log(event.target)
-    console.log($(event.target).html())
-    console.log($(event.relatedTarget).html())
+    var obj = $(event.target).attr('id');
+    console.log(obj);
+    tarea = ($($(event.relatedTarget).children('p')[0]).html());
+    editar(tarea,obj);
+    proyecto = ($("#combo option:selected").html());
+    inicialesc(proyecto);
+    enDesarrolloc(proyecto);
+    finalizadoc(proyecto);
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
     event.target.classList.remove('drop-active');
     event.target.classList.remove('drop-target');
-    console.log('No hace drop')
+    
   }
 });
+
+
+function editar(tarea,estado) {
+  url = 'url para cambiar el estado'
+  /*$.getJSON(url, {'estado': estado}, function(json, textStatus) {
+      optional stuff to do after success 
+  });*/
+}
