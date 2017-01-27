@@ -6,8 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+// models
+require("./models/project");
+require("./models/user");
+require("./models/task");
+
+// routes
 var index = require('./routes/index');
 var users = require('./routes/users');
+var projects = require('./routes/projects');
+var tasks = require('./routes/tasks');
 
 var app = express();
 
@@ -24,7 +32,44 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+
+// API routes
+var routes = express.Router();
+
+// project
+routes.route('/projects')
+  .get(projects.findAllProjects)
+  .post(projects.addProject);
+
+routes.route('/projects/:id')
+  .get(projects.findProjectById)
+  .put(projects.updateProject)
+  .delete(projects.deleteProject);
+
+
+// project
+routes.route('/users')
+  .get(users.findAllUsers)
+  .post(users.addUser);
+
+routes.route('/users/:id')
+  .get(users.findUserById)
+  .put(users.updateUser)
+  .delete(users.deleteUser);
+
+
+// task
+routes.route('/tasks')
+  .get(tasks.findAllTasks)
+  .post(tasks.addTask);
+
+routes.route('/tasks/:id')
+  .get(tasks.findTaskById)
+  .put(tasks.updateTask)
+  .delete(tasks.deleteTask);
+
+// routes register
+app.use('/api', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
