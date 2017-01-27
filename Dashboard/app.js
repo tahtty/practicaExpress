@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+//var server = require('./server');
 
 // models
 require("./models/project");
@@ -16,6 +17,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var projects = require('./routes/projects');
 var tasks = require('./routes/tasks');
+
+var db = server();
 
 var app = express();
 
@@ -71,6 +74,8 @@ routes.route('/tasks/:id')
 // routes register
 app.use('/api', routes);
 
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -99,3 +104,5 @@ mongoose.connect('mongodb://daw:1234@ds127389.mlab.com:27389/proyectosdaw', func
 });
 
 module.exports = app;
+app.listen(3000);
+console.log("Listening to PORT 3000");
