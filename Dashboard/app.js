@@ -46,7 +46,7 @@ routes.route('/projects')
 
 routes.route('/projects/:id')
   .get(projects.findProjectById)
-  .put(projects.updateProject)
+  .put(projects.updateProjectNAME)
   .delete(projects.deleteProject);
 
 

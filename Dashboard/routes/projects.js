@@ -40,7 +40,7 @@ exports.addProject = function(req, res) {
 
 
 //PUT - Update a register already exists
-exports.updateProject = function(req, res) {
+exports.updateProjectNAME = function(req, res) {
     Project.findById(req.params.id, function(err, project) {
         project.name  = req.body.name;
 

@@ -2,6 +2,11 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var ProjectSchema   = new Schema({
+    listaDeTareas : {
+
+                    type :[Number]
+                    },
+
     name:         {
                     type:     String,
                     required: true,

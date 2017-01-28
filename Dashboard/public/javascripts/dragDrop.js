@@ -81,9 +81,9 @@ interact("#desdrop,#inidrop,#findrop").dropzone({
     tarea = ($($(event.relatedTarget).children('p')[0]).html());
     editar(tarea,obj);
     proyecto = ($("#combo option:selected").html());
-    inicialesc(proyecto);
-    enDesarrolloc(proyecto);
-    finalizadoc(proyecto);
+    iniciales();
+    enDesarrollo();
+    finalizado();
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
@@ -95,7 +95,45 @@ interact("#desdrop,#inidrop,#findrop").dropzone({
 
 
 function editar(tarea,estado) {
-  url = 'url para cambiar el estado'
+  url = '/api/tasks/'
+  $.ajax({
+    url: '/api/tasks/',
+    type: 'GET',
+    dataType: 'json',
+    data: {param1: 'value1'},
+  })
+  .done(function(resp) {
+     for (var i = 0; i < resp.length; i++) {
+       if(resp[i].name ==tarea){
+           $.ajax({
+             url: '/api/tasks/'+resp[i]._id,
+             type: 'PUT',
+             dataType: 'json',
+             data: {status: estado},
+             
+           })
+           .done(function() {
+             console.log("success");
+           })
+           .fail(function() {
+             console.log("error");
+           })
+           .always(function() {
+             console.log("complete");
+           });
+           
+       }
+     }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
+
+
   /*$.getJSON(url, {'estado': estado}, function(json, textStatus) {
       optional stuff to do after success 
   });*/
